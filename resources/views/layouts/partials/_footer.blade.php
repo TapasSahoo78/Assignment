@@ -1,9 +1,9 @@
 <script src="{{ asset('assets/dist/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/dist/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/dist/js/jquery.overlayScrollbars.min.js') }}"></script>
-<script src="{{ asset('assets/dist/js/adminlte.js') }}"></script>
+<script src="{{ asset('assets/dist/js/adminlte.js?v=' . config('custom.CACHE_VERSION')) }}"></script>
 <script src="{{ asset('assets/dist/js/Chart.min.js') }}"></script>
-<script src="{{ asset('assets/dist/js/dashboard2.js') }}"></script>
+<script src="{{ asset('assets/dist/js/dashboard2.js?v=' . config('custom.CACHE_VERSION')) }}"></script>
 {{-- toastr js --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 
