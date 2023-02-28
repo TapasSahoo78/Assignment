@@ -28,7 +28,15 @@ class Media extends Model
      * @var array
      */
     protected $fillable = [
-        'uuid', 'user_id', 'mediaable_type', 'mediaable_id', 'media_type',
+        'uuid', 'user_id', 'media_type',
         'file', 'is_profile_picture',
     ];
+
+    /**
+     * Get user related to a particular media.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }
