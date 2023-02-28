@@ -12,5 +12,6 @@
     {{-- toastr --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
     <link href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/dist/css/style.css?v=' . config('custom.CACHE_VERSION')) }}">
     @stack('styles')
 </head>

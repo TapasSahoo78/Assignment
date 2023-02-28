@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('#myTable').DataTable({
-        "paging": true,
+        "paging": false,
         "lengthChange": true,
         "searching": true,
         "ordering": true,

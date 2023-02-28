@@ -20,7 +20,7 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             @if ($showContentHeader)
-                @include('layouts.partials.content_header')
+                @include('layouts.partials.content-header')
             @endif
             <!-- /.content-header -->
             <section class="content">

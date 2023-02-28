@@ -8,7 +8,7 @@
     <div class="card card-primary">
         <div class="card-header d-flex justify-content-end">
             <p class="h4 col-9 text-capitalize">Add Form</p>
-            @include('layouts.partials.back_button')
+            @include('layouts.partials.back-button')
         </div>
         <!-- /.card-header -->
         <!-- form start -->

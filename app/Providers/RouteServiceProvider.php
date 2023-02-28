@@ -34,6 +34,31 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+        $this->mapAdminRoutes();
+        $this->mapEmployeeRoutes();
+    }
+
+    /**
+     * Route for Admin Section
+     */
+    protected function mapAdminRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->prefix('admin')
+            ->group(base_path('routes/admin.php'));
+    }
+
+    /**
+     * Route for Employee Section
+     */
+    protected function mapEmployeeRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->prefix('employee')
+            ->group(base_path('routes/employee.php'));
     }
 
     /**

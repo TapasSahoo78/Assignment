@@ -1,0 +1,13 @@
+@keyframes popup {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.modal-dialog {
+    animation: popup 0.5s forwards ease-in-out;
+}
