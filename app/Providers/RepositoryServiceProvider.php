@@ -3,20 +3,23 @@
 namespace App\Providers;
 
 use App\Contracts\{
+    AdminContract,
+    ProfileContract,
     RolePermissionContract,
-    UserContract
 };
 use App\Repositories\{
     RolePermissionRepository,
-    UserRepository
+    AdminRepository,
+    ProfileRepository
 };
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
     protected $repositories = [
-        UserContract::class => UserRepository::class,
-        RolePermissionContract::class => RolePermissionRepository::class
+        AdminContract::class => AdminRepository::class,
+        RolePermissionContract::class => RolePermissionRepository::class,
+        ProfileContract::class => ProfileRepository::class
     ];
 
     /**

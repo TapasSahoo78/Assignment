@@ -15,9 +15,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->unsignedBigInteger('user_id');
-            $table->string('media_type')->comment('Please add document or image description in this field');
             $table->string('file');
-            $table->boolean('is_profile_picture')->default(0)->comment('0 = No, 1 = Yes');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');

@@ -18,6 +18,16 @@
             toastr.success("{{ session('success') }}");
         @endif
 
+        toastr.options.timeOut = 10000;
+        @if (Session::has('message'))
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.success("{{ session('message') }}");
+        @endif
+        s
+
         @if (Session::has('error'))
             toastr.options = {
                 "closeButton": true,

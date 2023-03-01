@@ -17,5 +17,10 @@ class RoleSeeder extends Seeder
         $admin->name = 'Super Admin';
         $admin->slug = 'super-admin';
         $admin->save();
+
+        $admin = new Role();
+        $admin->name = 'User';
+        $admin->slug = 'user';
+        $admin->save();
     }
 }

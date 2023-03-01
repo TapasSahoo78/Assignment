@@ -24,9 +24,11 @@ class RolePermissionController extends BaseController
      */
     public function index()
     {
-        $this->setPageTitle('Roles', '');
-        $roleWithPermission = $this->RolePermissionService->getRoleWithPermssion();
-        return view('admin.roles.index', compact('roleWithPermission'));
+        if (auth()->user()->can('role.list')) {
+            $this->setPageTitle('Roles', '');
+            $roleWithPermission = $this->RolePermissionService->getRoleWithPermssion();
+            return view('admin.roles.index', compact('roleWithPermission'));
+        }
     }
 
     /**
@@ -34,9 +36,11 @@ class RolePermissionController extends BaseController
      */
     public function create()
     {
-        $this->setPageTitle('Create Role', '');
-        $permissions = $this->RolePermissionService->getAllPermissions();
-        return view('admin.roles.create', compact('permissions'));
+        if (auth()->user()->can('role.create')) {
+            $this->setPageTitle('Create Role', '');
+            $permissions = $this->RolePermissionService->getAllPermissions();
+            return view('admin.roles.create', compact('permissions'));
+        }
     }
 
     /**
@@ -65,10 +69,12 @@ class RolePermissionController extends BaseController
      */
     public function edit(string $id)
     {
-        $edit_id = Crypt::decrypt($id);
-        $permissions = $this->RolePermissionService->getAllPermissions();
-        $editRole = $this->RolePermissionService->editRoleWithPermssion($edit_id);
-        return view('admin.roles.create', compact('permissions', 'editRole'));
+        if (auth()->user()->can('role.edit')) {
+            $edit_id = Crypt::decrypt($id);
+            $permissions = $this->RolePermissionService->getAllPermissions();
+            $editRole = $this->RolePermissionService->editRoleWithPermssion($edit_id);
+            return view('admin.roles.create', compact('permissions', 'editRole'));
+        }
     }
 
     /**
@@ -101,15 +107,17 @@ class RolePermissionController extends BaseController
      */
     public function destroy(string $id)
     {
-        try {
-            $delete = $this->RolePermissionService->deleteRoleWithPermssion($id);
-            if (isset($delete) && !empty($delete)) {
-                return redirect()->route('roles.index')->with('success', config('custom.MSG_RECORD_DELETE_SUCCESS'));
-            } else {
-                return $this->responseRedirectBack(config('custom.MSG_RECORD_DELETE_FAILED'), 'error', true, true);
+        if (auth()->user()->can('role.delete')) {
+            try {
+                $delete = $this->RolePermissionService->deleteRoleWithPermssion($id);
+                if (isset($delete) && !empty($delete)) {
+                    return redirect()->route('roles.index')->with('success', config('custom.MSG_RECORD_DELETE_SUCCESS'));
+                } else {
+                    return $this->responseRedirectBack(config('custom.MSG_RECORD_DELETE_FAILED'), 'error', true, true);
+                }
+            } catch (Exception $e) {
+                logger($e->getCode() . '->' . $e->getLine() . '->' . $e->getMessage());
             }
-        } catch (Exception $e) {
-            logger($e->getCode() . '->' . $e->getLine() . '->' . $e->getMessage());
         }
     }
 }

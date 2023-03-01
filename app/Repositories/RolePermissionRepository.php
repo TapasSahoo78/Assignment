@@ -53,7 +53,7 @@ class RolePermissionRepository extends BaseRepository implements RolePermissionC
      */
     public function getRoleWithPermssion()
     {
-        return $this->roleModel->with('permissions')->get();
+        return $this->roleModel::whereNot('slug', 'user')->whereNot('slug', 'super-admin')->with('permissions')->get();
     }
     /**
      * To Create a record
@@ -156,6 +156,6 @@ class RolePermissionRepository extends BaseRepository implements RolePermissionC
      */
     public function getAdminRole()
     {
-        return $this->roleModel::whereNot('slug', 'user')->get();
+        return $this->roleModel::whereNot('slug', 'user')->whereNot('slug', 'super-admin')->get();
     }
 }
