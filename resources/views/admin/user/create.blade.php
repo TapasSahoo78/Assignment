@@ -189,7 +189,7 @@
                             <label>Profile Picture</label>
                             <div class="input-group ">
                                 <div class="custom-file">
-                                    <input type="file" name="profile_picture" id="">
+                                    <input type="file" name="profile_picture" id="" accept="image/*">
                                 </div>
                             </div>
                             @error('media.profile_picture')

@@ -51,7 +51,7 @@
                         {{-- <div class="input-group mb-3 col">
                             <input type="file" class="" id="" name="profile_picture">
                         </div> --}}
-                        <input type="file" class="" id="" name="profile_picture">
+                        <input type="file" class="" id="" name="profile_picture" accept="image/*">
                         @error('profile_picture')
                             <span class="code text-danger">{{ $message }}</span>
                         @enderror
