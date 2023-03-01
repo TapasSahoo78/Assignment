@@ -74,19 +74,6 @@ class ProfileController extends BaseController
         }
     }
 
-    public function updatePaaword(Request $request)
-    {
-        $request->validate([
-            'new_password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
-        $update = $this->ProfileService->updatePaaword($request);
-        if (isset($update) && !empty($update)) {
-            return redirect()->back()->with('message', config('custom.MSG_RECORD_UPDATE_SUCCESS'));
-        } else {
-            return $this->responseRedirectBack(config('custom.MSG_RECORD_UPDATE_FAILED'), 'error', true, true);
-        }
-    }
-
     public function updateAddress(Request $request)
     {
         try {

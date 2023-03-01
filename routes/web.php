@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return redirect('login');
+});
 
 /************** Register & Login Section Start ****************/
 Route::controller(LoginController::class)->group(function () {
@@ -29,8 +32,6 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::group(['middleware' => 'role:user'], function () {
         Route::get('user/dashboard', 'dashboard')->middleware(['auth', 'is_verify_email']);
-        // Route::get('user/dashboard', 'dashboard');
     });
-    // Route::get('user/dashboard', 'dashboard');
     Route::get('account/verify/{token}', 'verifyAccount')->name('user.verify');
 });

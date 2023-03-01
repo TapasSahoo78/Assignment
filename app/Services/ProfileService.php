@@ -60,15 +60,6 @@ class ProfileService
         return $this->ProfileRepository->updateProfile($request);
     }
 
-    /**
-     * To update a record
-     *
-     * @param $request, $id
-     */
-    public function updatePaaword($request)
-    {
-        return $this->ProfileRepository->updatePaaword($request);
-    }
 
     /**
      * To update a record

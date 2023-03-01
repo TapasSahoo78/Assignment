@@ -28,6 +28,8 @@ class AdminController extends BaseController
         if (auth()->user()->can('user.list')) {
             $adminUser = $this->AdminService->getAllAdminUser();
             return view('admin.user.index', compact('adminUser'));
+        }else {
+            abort('401');
         }
     }
 
@@ -39,6 +41,8 @@ class AdminController extends BaseController
         if (auth()->user()->can('user.create')) {
             $roles = $this->RolePermissionService->getAdminRole();
             return view('admin.user.create', compact('roles'));
+        } else {
+            abort('401');
         }
     }
 
@@ -103,6 +107,8 @@ class AdminController extends BaseController
             } catch (Exception $e) {
                 logger($e->getCode() . '->' . $e->getLine() . '->' . $e->getMessage());
             }
+        }else {
+            abort('401');
         }
     }
 }

@@ -16,10 +16,16 @@ class IsVerifyEmail
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::user()->is_email_verified) {
-            auth()->logout();
-            return redirect()->route('login')
-                ->with('message', 'You need to confirm your account. We have sent you an activation code, please check your email.');
+        if (Auth::check()) {
+            if (auth()->user()->hasRole('user')) {
+                if (!Auth::user()->is_email_verified) {
+                    auth()->logout();
+                    return redirect()->route('login')
+                        ->with('message', 'You need to confirm your account. We have sent you an activation code, please check your email.');
+                }
+            } else {
+                return redirect('/admin/dashboard');
+            }
         }
 
         return $next($request);

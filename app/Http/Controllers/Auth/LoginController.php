@@ -13,11 +13,15 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends BaseController
 {
+
     public function index()
     {
-        $user = Auth::user();
-        if (auth()->user() && $user->hasRole('user')) {
-            return redirect('user/dashboard');
+        if (Auth::check()) {
+            if (auth()->user()->hasRole('user')) {
+                return redirect('/user/dashboard');
+            } else {
+                return redirect('/admin/dashboard');
+            }
         }
 
         return view('auth.pages.signin');
@@ -39,10 +43,12 @@ class LoginController extends BaseController
 
         if (Auth::attempt($userCredentials)) {
 
-            if (auth()->user() && $user->hasRole('user')) {
-                return redirect('user/dashboard');
-            } else {
-                return redirect('/admin/dashboard');
+            if (Auth::check()) {
+                if (auth()->user()->hasRole('user')) {
+                    return redirect('/user/dashboard');
+                } else {
+                    return redirect('/admin/dashboard');
+                }
             }
         } else {
             return back()->with('error', 'Username & Password is Invalid');

@@ -28,6 +28,8 @@ class RolePermissionController extends BaseController
             $this->setPageTitle('Roles', '');
             $roleWithPermission = $this->RolePermissionService->getRoleWithPermssion();
             return view('admin.roles.index', compact('roleWithPermission'));
+        } else {
+            abort('401');
         }
     }
 
@@ -40,6 +42,8 @@ class RolePermissionController extends BaseController
             $this->setPageTitle('Create Role', '');
             $permissions = $this->RolePermissionService->getAllPermissions();
             return view('admin.roles.create', compact('permissions'));
+        } else {
+            abort('401');
         }
     }
 
@@ -74,6 +78,8 @@ class RolePermissionController extends BaseController
             $permissions = $this->RolePermissionService->getAllPermissions();
             $editRole = $this->RolePermissionService->editRoleWithPermssion($edit_id);
             return view('admin.roles.create', compact('permissions', 'editRole'));
+        } else {
+            abort('401');
         }
     }
 
@@ -118,6 +124,8 @@ class RolePermissionController extends BaseController
             } catch (Exception $e) {
                 logger($e->getCode() . '->' . $e->getLine() . '->' . $e->getMessage());
             }
+        } else {
+            abort('401');
         }
     }
 }

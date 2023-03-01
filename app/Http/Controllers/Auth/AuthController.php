@@ -24,6 +24,13 @@ class AuthController extends BaseController
      */
     public function registration()
     {
+        if (Auth::check()) {
+            if (auth()->user()->hasRole('user')) {
+                return redirect('/user/dashboard');
+            } else {
+                return redirect('/admin/dashboard');
+            }
+        }
         return view('auth.pages.signup');
     }
 
@@ -104,7 +111,9 @@ class AuthController extends BaseController
     public function dashboard()
     {
         if (Auth::check()) {
-            return view('employee.dashboard.dashboard');
+            if (auth()->user()->hasRole('user')) {
+                return view('employee.dashboard.dashboard');
+            }
         }
 
         return redirect("login")->withSuccess('Opps! You do not have access');

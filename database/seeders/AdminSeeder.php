@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminSeeder extends Seeder
 {
@@ -24,7 +25,7 @@ class AdminSeeder extends Seeder
         $user->email = 'tapasbca2015@gmail.com';
         $user->mobile_number = 9547614783;
         $user->email_verified_at = $faker->dateTime();
-        $user->password = bcrypt('password');
+        $user->password = Hash::make('password');
         $user->is_active = 1;
         if ($user->save()) {
             $user->profile()->create([

@@ -96,26 +96,6 @@ class ProfileRepository extends BaseRepository implements ProfileContract
      *
      * @param array $attributes,$id
      */
-    public function updatePaaword($attributes)
-    {
-        $collection = collect($attributes);
-
-        $usrs = $this->userModel::where('id', $collection['user_id'])->first();
-
-        $usrs->password = Hash::make($collection['new_password']);
-
-        $result = $usrs->save();
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    /**
-     * To update a record
-     *
-     * @param array $attributes,$id
-     */
     public function updateProfile($attributes)
     {
         $collection = collect($attributes);
