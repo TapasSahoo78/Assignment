@@ -80,7 +80,7 @@ class AdminController extends BaseController
      */
     public function edit(string $id)
     {
-        //
+        return;
     }
 
     /**
